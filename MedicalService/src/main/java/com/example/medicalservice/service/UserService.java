@@ -4,6 +4,9 @@ import com.example.medicalservice.dto.request.LoginRequestDto;
 import com.example.medicalservice.dto.request.UserRequestDto;
 import com.example.medicalservice.entity.user.UserEntity;
 import com.example.medicalservice.entity.user.UserRole;
+import com.example.medicalservice.exception.AuthenticationFailedException;
+import com.example.medicalservice.exception.DataNotFoundException;
+import com.example.medicalservice.exception.UniqueObjectException;
 import com.example.medicalservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +36,7 @@ public class    UserService {
         throw new UniqueObjectException("username or phone number already exists");
     }
     public JwtResponse signIn(LoginRequestDto loginRequestDto){
-        UserEntity userEntity = userRepository.findUserEntityByUsername(loginRequestDto.getUsername())
+        UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(loginRequestDto.getPhoneNumber())
                 .orElseThrow(() -> new DataNotFoundException("Incorrect username or password"));
         if(passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())){
             String accessToken = jwtService.generateAccessToken(userEntity);
@@ -46,16 +50,16 @@ public class    UserService {
     }
 
     public UserEntity update(UserRequestDto userRequestDto, Principal principal){
-        UserEntity userEntity = userRepository.findUserEntityByUsername(principal.getName())
+        UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(principal.getName())
                 .orElseThrow(()-> new AuthenticationFailedException("Your access has expired"));
-        if(!userEntity.getUsername().equals(userRequestDto.getUsername())){
-            Optional<UserEntity> userEntityByUsername = userRepository.findUserEntityByUsername(userRequestDto.getUsername());
+        if(!userEntity.getPhoneNumber().equals(userRequestDto.getPhoneNumber())){
+            Optional<UserEntity> userEntityByUsername = userRepository.findUserEntityByPhoneNumber(userRequestDto.getPhoneNumber());
             if(userEntityByUsername.isPresent()){
                 throw new UniqueObjectException("Username already exists");
             }
         }
-        if(userRequestDto.getUsername() != null){
-            userEntity.setUsername(userRequestDto.getUsername());
+        if(userRequestDto.getPhoneNumber() != null){
+            userEntity.setPhoneNumber(userRequestDto.getPhoneNumber());
         }
         if(userRequestDto.getPassword() != null){
             userEntity.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
@@ -67,12 +71,12 @@ public class    UserService {
         return userRepository.save(userEntity);
     }
     public void delete(Principal principal){
-        UserEntity userEntity = userRepository.findUserEntityByUsername(principal.getName())
+        UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(principal.getName())
                 .orElseThrow(() -> new AuthenticationFailedException("Your access has expired"));
         userRepository.delete(userEntity);
     }
     public JwtResponse getNewAccessToken(Principal principal) {
-        UserEntity userEntity = userRepository.findUserEntityByUsername(principal.getName())
+        UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(principal.getName())
                 .orElseThrow(() -> new DataNotFoundException("user not found"));
         String accessToken = jwtService.generateAccessToken(userEntity);
         return JwtResponse.builder().accessToken(accessToken).build();
