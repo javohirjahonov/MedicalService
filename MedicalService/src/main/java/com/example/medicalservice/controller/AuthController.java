@@ -5,7 +5,7 @@ import com.example.medicalservice.dto.request.LoginRequestDto;
 import com.example.medicalservice.dto.request.UserRequestDto;
 import com.example.medicalservice.entity.user.UserEntity;
 import com.example.medicalservice.exception.RequestValidationException;
-import com.example.medicalservice.service.UserService;
+import com.example.medicalservice.service.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

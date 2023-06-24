@@ -1,7 +1,7 @@
-package com.example.medicalservice.service;
+package com.example.medicalservice.service.auth;
 
 import com.example.medicalservice.exception.DataNotFoundException;
-import com.example.medicalservice.repository.UserRepository;
+import com.example.medicalservice.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

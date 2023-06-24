@@ -1,7 +1,7 @@
 package com.example.medicalservice.filter;
 
-import com.example.medicalservice.service.AuthenticationService;
-import com.example.medicalservice.service.JwtService;
+import com.example.medicalservice.service.auth.AuthenticationService;
+import com.example.medicalservice.service.jwt.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import jakarta.servlet.FilterChain;
