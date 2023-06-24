@@ -1,4 +1,4 @@
-package com.example.medicalservice.service;
+package com.example.medicalservice.service.user;
 
 import com.example.medicalservice.dto.reponse.JwtResponse;
 import com.example.medicalservice.dto.request.LoginRequestDto;
@@ -8,7 +8,8 @@ import com.example.medicalservice.entity.user.UserRole;
 import com.example.medicalservice.exception.AuthenticationFailedException;
 import com.example.medicalservice.exception.DataNotFoundException;
 import com.example.medicalservice.exception.UniqueObjectException;
-import com.example.medicalservice.repository.UserRepository;
+import com.example.medicalservice.repository.user.UserRepository;
+import com.example.medicalservice.service.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 
 import org.modelmapper.ModelMapper;

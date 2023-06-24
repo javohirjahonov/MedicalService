@@ -2,7 +2,7 @@ package com.example.medicalservice.controller;
 
 import com.example.medicalservice.dto.request.UserRequestDto;
 import com.example.medicalservice.entity.user.UserEntity;
-import com.example.medicalservice.service.UserService;
+import com.example.medicalservice.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

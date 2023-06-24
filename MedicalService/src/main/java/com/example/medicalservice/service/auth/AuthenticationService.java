@@ -1,4 +1,4 @@
-package com.example.medicalservice.service;
+package com.example.medicalservice.service.auth;
 
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.example.medicalservice.service;
+package com.example.medicalservice.service.jwt;
 
 import com.example.medicalservice.entity.user.UserEntity;
 import io.jsonwebtoken.Claims;
