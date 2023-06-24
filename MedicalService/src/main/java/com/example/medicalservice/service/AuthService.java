@@ -1,5 +1,6 @@
 package com.example.medicalservice.service;
 
+import com.example.medicalservice.exception.DataNotFoundException;
 import com.example.medicalservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
