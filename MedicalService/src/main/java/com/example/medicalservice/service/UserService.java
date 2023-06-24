@@ -1,5 +1,6 @@
 package com.example.medicalservice.service;
 
+import com.example.medicalservice.dto.reponse.JwtResponse;
 import com.example.medicalservice.dto.request.LoginRequestDto;
 import com.example.medicalservice.dto.request.UserRequestDto;
 import com.example.medicalservice.entity.user.UserEntity;
@@ -20,7 +21,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class    UserService {
+public class UserService {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
