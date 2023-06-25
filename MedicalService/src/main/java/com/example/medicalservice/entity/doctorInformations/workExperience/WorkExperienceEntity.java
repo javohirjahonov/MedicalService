@@ -1,4 +1,4 @@
-package com.example.medicalservice.entity.doctorInformations.scientificAchievements;
+package com.example.medicalservice.entity.doctorInformations.workExperience;
 
 import com.example.medicalservice.entity.BaseEntity;
 import com.example.medicalservice.entity.user.UserEntity;
@@ -10,23 +10,27 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity(name = "scientific_achievements")
+@Entity(name = "doctor_informations")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class ScientificAchievements extends BaseEntity {
+public class WorkExperienceEntity extends BaseEntity {
 
     @Column(nullable = false)
-    private String qualification;
+    private String organization;
 
     @Column(nullable = false)
-    private String academicDegree;
+    private String address;
 
     @Column(nullable = false)
-    private String ranks;
+    private String job_title;
+
+    @Column(nullable = false)
+    private String work_period;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<UserEntity> userScientificAchievements;
+    private List<UserEntity> userWorkExperience;
+
 }

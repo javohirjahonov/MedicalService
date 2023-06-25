@@ -35,7 +35,7 @@ public class UserService {
             userEntity.setRole(UserRole.USER);
             return userRepository.save(userEntity);
         }
-        throw new UniqueObjectException("PhoneNumber or phone number already exists");
+        throw new UniqueObjectException("UserName or phone number already exists");
     }
 
     public JwtResponse signIn(LoginRequestDto loginRequestDto){
