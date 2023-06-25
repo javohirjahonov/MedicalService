@@ -18,14 +18,14 @@ public class WorkExperienceController {
 
     private final WorkExperienceService workExperienceService;
     @PostMapping("/add")
-    @PreAuthorize(value = "hasRole('DOCTOR')")
+    @PreAuthorize(value = "hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<WorkExperienceEntity> addEducationInformation(
             @RequestBody WorkExperienceCreateDto workExperienceCreateDto
     ){
         return ResponseEntity.ok(workExperienceService.add(workExperienceCreateDto));
     }
     @PutMapping("/update")
-    @PreAuthorize(value = "hasRole('DOCTOR')")
+    @PreAuthorize(value = "hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<String> updateEducationInformation(
             @RequestBody WorkExperienceCreateDto workExperienceCreateDto,
             @RequestParam(value = "id") UUID id
@@ -34,7 +34,7 @@ public class WorkExperienceController {
         return ResponseEntity.ok("Data successfully updated");
     }
     @DeleteMapping("/delete")
-    @PreAuthorize(value = "hasRole('DOCTOR')")
+    @PreAuthorize(value = "hasRole('DOCTOR')or hasRole('ADMIN')")
     public ResponseEntity<String> delete(
             @RequestParam(value = "id") UUID id
     ){

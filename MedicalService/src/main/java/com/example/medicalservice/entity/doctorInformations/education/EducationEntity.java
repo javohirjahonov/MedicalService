@@ -1,6 +1,7 @@
 package com.example.medicalservice.entity.doctorInformations.education;
 
 import com.example.medicalservice.entity.BaseEntity;
+import com.example.medicalservice.entity.doctor.DoctorEntity;
 import com.example.medicalservice.entity.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,5 +36,5 @@ public class EducationEntity extends BaseEntity {
     private Duration periodOfStudy;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<UserEntity> userEducations;
+    private List<DoctorEntity> doctorEducations;
 }
