@@ -1,10 +1,7 @@
 package com.example.medicalservice.controller;
 
-import com.example.medicalservice.dto.education.EducationCreateDto;
 import com.example.medicalservice.dto.scientificAchievements.ScientificAchievementsCreateDto;
-import com.example.medicalservice.entity.doctorInformations.education.EducationEntity;
 import com.example.medicalservice.entity.doctorInformations.scientificAchievements.ScientificAchievementsEntity;
-import com.example.medicalservice.service.education.EducationService;
 import com.example.medicalservice.service.scientificAchievements.ScientificAchievementsService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
