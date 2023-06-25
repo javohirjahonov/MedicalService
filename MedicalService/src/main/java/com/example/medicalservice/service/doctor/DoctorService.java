@@ -38,20 +38,6 @@ public class DoctorService {
         throw new UniqueObjectException("UserName or phone number already exists");
     }
 
-    public JwtResponse signIn(LoginRequestDto loginRequestDto){
-        UserEntity userEntity = doctorRepository.findDoctorEntityByPhoneNumber(loginRequestDto.getPhoneNumber())
-                .orElseThrow(() -> new DataNotFoundException("Incorrect phoneNumber or password"));
-        if(passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())){
-            String accessToken = jwtService.generateAccessToken(userEntity);
-            String refreshToken = jwtService.generateRefreshToken(userEntity);
-            return JwtResponse.builder()
-                    .accessToken(accessToken)
-                    .refreshToken(refreshToken)
-                    .build();
-        }
-        throw new AuthenticationFailedException("Incorrect phoneNumber or password");
-    }
-
     public DoctorEntity update(UserRequestDto userRequestDto, Principal principal){
         DoctorEntity doctorEntity = doctorRepository.findDoctorEntityByPhoneNumber(principal.getName())
                 .orElseThrow(()-> new AuthenticationFailedException("Your access has expired"));
@@ -93,12 +79,5 @@ public class DoctorService {
         DoctorEntity userEntity = doctorRepository.findDoctorEntityByPhoneNumber(principal.getName())
                 .orElseThrow(() -> new AuthenticationFailedException("Your access has expired"));
         doctorRepository.delete(userEntity);
-    }
-
-    public JwtResponse getNewAccessToken(Principal principal) {
-        DoctorEntity userEntity = doctorRepository.findDoctorEntityByPhoneNumber(principal.getName())
-                .orElseThrow(() -> new DataNotFoundException("doctor not found"));
-        String accessToken = jwtService.generateAccessToken(userEntity);
-        return JwtResponse.builder().accessToken(accessToken).build();
     }
 }

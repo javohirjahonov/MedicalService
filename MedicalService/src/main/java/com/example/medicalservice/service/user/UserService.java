@@ -56,7 +56,7 @@ public class UserService {
     public JwtResponse signIn(LoginRequestDto loginRequestDto){
         UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(loginRequestDto.getPhoneNumber())
                 .orElseThrow(() -> new DataNotFoundException("Incorrect phoneNumber or password"));
-        if(passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())){
+        if(passwordEncoder.matches(loginRequestDto.getPassword(), userEntity.getPassword())){
             String accessToken = jwtService.generateAccessToken(userEntity);
             String refreshToken = jwtService.generateRefreshToken(userEntity);
             return JwtResponse.builder()
