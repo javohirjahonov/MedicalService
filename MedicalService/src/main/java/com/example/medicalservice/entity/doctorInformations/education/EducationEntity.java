@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class Education extends BaseEntity {
+public class EducationEntity extends BaseEntity {
 
     @Column(nullable = false)
     private String educationType;
