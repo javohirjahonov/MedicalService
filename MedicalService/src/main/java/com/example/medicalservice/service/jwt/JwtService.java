@@ -23,7 +23,7 @@ public class JwtService {
     @Value("${jwt.access.expiry}")
     private long accessTokenExpiry;
 
-    @Value("${refresh.expiry}")
+    @Value("${jwt.refresh.expiry}")
     private long refreshTokenExpiry;
 
     public String generateAccessToken(UserEntity userEntity) {
