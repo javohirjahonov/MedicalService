@@ -31,7 +31,19 @@ public class AuthController {
             List<ObjectError> allErrors = bindingResult.getAllErrors();
             throw new RequestValidationException(allErrors);
         }
-        return ResponseEntity.ok(userService.save(userDto));
+        return ResponseEntity.ok(userService.saveClient(userDto));
+    }
+
+    @PostMapping("/sign-Up-Doctor")
+    public ResponseEntity<UserEntity> signUpDoctor(
+            @Valid @RequestBody UserRequestDto userDto,
+            BindingResult bindingResult
+    ) throws RequestValidationException {
+        if (bindingResult.hasErrors()){
+            List<ObjectError> allErrors = bindingResult.getAllErrors();
+            throw new RequestValidationException(allErrors);
+        }
+        return ResponseEntity.ok(userService.saveDoctor(userDto));
     }
 
     @GetMapping("/sign-In")

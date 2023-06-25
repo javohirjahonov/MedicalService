@@ -16,13 +16,14 @@ import java.security.Principal;
 public class UserController {
 
     private final UserService userService;
-    @PostMapping("/add")
+    @PostMapping("/add-client")
     @PreAuthorize(value = "hasRole('ADMIN')")
-    public ResponseEntity<UserEntity> addUser(
+    public ResponseEntity<UserEntity> addClient(
             @RequestBody UserRequestDto userRequestDto
     ) {
-        return ResponseEntity.ok(userService.save(userRequestDto));
+        return ResponseEntity.ok(userService.saveClient(userRequestDto));
     }
+
     @PutMapping("/update")
     @PreAuthorize(value = "hasRole('ADMIN')")
     public ResponseEntity<UserEntity> update(

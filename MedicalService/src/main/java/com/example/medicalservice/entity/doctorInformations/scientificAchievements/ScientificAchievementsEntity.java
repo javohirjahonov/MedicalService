@@ -1,6 +1,7 @@
 package com.example.medicalservice.entity.doctorInformations.scientificAchievements;
 
 import com.example.medicalservice.entity.BaseEntity;
+import com.example.medicalservice.entity.doctor.DoctorEntity;
 import com.example.medicalservice.entity.user.UserEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,5 +29,5 @@ public class ScientificAchievementsEntity extends BaseEntity {
     private String ranks;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<UserEntity> userScientificAchievements;
+    private List<DoctorEntity> doctorScientificAchievements;
 }

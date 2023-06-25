@@ -1,6 +1,7 @@
 package com.example.medicalservice.entity.doctorInformations.workExperience;
 
 import com.example.medicalservice.entity.BaseEntity;
+import com.example.medicalservice.entity.doctor.DoctorEntity;
 import com.example.medicalservice.entity.user.UserEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -31,6 +32,6 @@ public class WorkExperienceEntity extends BaseEntity {
     private String work_period;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<UserEntity> userWorkExperience;
+    private List<DoctorEntity> doctorWorkExperience;
 
 }

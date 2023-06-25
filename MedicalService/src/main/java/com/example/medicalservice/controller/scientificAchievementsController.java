@@ -20,14 +20,14 @@ public class scientificAchievementsController {
     private final ScientificAchievementsService scientificAchievementsService;
     private final ModelMapper modelMapper;
     @PostMapping("/add")
-    @PreAuthorize(value = "hasRole('DOCTOR')")
+    @PreAuthorize(value = "hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<ScientificAchievementsEntity> addScientificAchievements (
             @RequestBody ScientificAchievementsCreateDto scientificAchievementsCreateDto
     ){
         return ResponseEntity.ok(scientificAchievementsService.add(scientificAchievementsCreateDto));
     }
     @PutMapping("/update")
-    @PreAuthorize(value = "hasRole('DOCTOR')")
+    @PreAuthorize(value = "hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<String> updateScientificAchievements (
             @RequestBody ScientificAchievementsCreateDto scientificAchievementsCreateDto,
             @RequestParam(value = "id") UUID id
@@ -36,7 +36,7 @@ public class scientificAchievementsController {
         return ResponseEntity.ok("Data successfully updated");
     }
     @DeleteMapping("/delete")
-    @PreAuthorize(value = "hasRole('DOCTOR')")
+    @PreAuthorize(value = "hasRole('DOCTOR') or hasRole('ADMIN')")
     public ResponseEntity<String> delete(
             @RequestParam(value = "id") UUID id
     ){
