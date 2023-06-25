@@ -5,6 +5,7 @@ import com.example.medicalservice.entity.doctorInformations.education.EducationE
 import com.example.medicalservice.service.education.EducationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +18,14 @@ public class EducationController {
 
     private final EducationService educationService;
     @PostMapping("/add")
+    @PreAuthorize(value = "hasRole('DOCTOR')")
     public ResponseEntity<EducationEntity> addEducationInformation(
             @RequestBody EducationCreateDto educationCreateDto
     ){
         return ResponseEntity.ok(educationService.add(educationCreateDto));
     }
     @PutMapping("/update")
+    @PreAuthorize(value = "hasRole('DOCTOR')")
     public ResponseEntity<String> updateEducationInformation(
             @RequestBody EducationCreateDto educationCreateDto,
             @RequestParam(value = "id") UUID id
@@ -31,6 +34,7 @@ public class EducationController {
         return ResponseEntity.ok("Data successfully updated");
     }
     @DeleteMapping("/delete")
+    @PreAuthorize(value = "hasRole('DOCTOR')")
     public ResponseEntity<String> delete(
             @RequestParam(value = "id") UUID id
     ){
